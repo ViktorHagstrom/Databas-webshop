@@ -4,16 +4,13 @@
 
 require_once("database.php");
 $stmt = $conn->prepare(
-"SELECT  product.product_Name,pictures.picture, product.product_Description , product.product_Price , category.category 
+"SELECT  product.product_Name,pictures.picture, product.product_Description , product.product_Price ,product.product_ID
 FROM product
 JOIN product_Pictures
 ON product.product_ID = product_Pictures.product_ID
 JOIN pictures
 ON pictures.picture_ID = product_Pictures.picture_ID
- JOIN product_category
-ON product.product_ID = product_Category.product_ID
-JOIN category
-ON  product_Category.category_ID =   category.category_ID
+
 
 
 ");

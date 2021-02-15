@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="container ">
-    <div class="div_bg"><p>
-    <h1>Webshop</h1>
-    </p></div>
-    <div class="text-center">
-    
-    
+
+<body >
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10 div_bg"> <p ><h1 class="text-center">MOVIE DEALS</h1></p></div>
+<div class="col-md-1"></div>
+</div>
+
+
+  
