@@ -1,60 +1,23 @@
-
-<?php require_once('header.php');
-
-
-require_once("database.php");
-$stmt = $conn->prepare(
-"SELECT  product.product_Name,pictures.picture, product.product_Description , product.product_Price ,product.product_ID
-FROM product
-JOIN product_Pictures
-ON product.product_ID = product_Pictures.product_ID
-JOIN pictures
-ON pictures.picture_ID = product_Pictures.picture_ID
-
-
-
-");
-$stmt->execute();
-$result = $stmt->fetchAll();
-
-
-echo "<pre>";
-print_r($result);
-echo "</pre>";
-
-
-function array_values_recursive($array)
-{
-    $arrayValues = array();
-
-    foreach ($array as $value)
-    {
-        if (is_scalar($value) OR is_resource($value))
-        {
-             $arrayValues[] = $value;
-        }
-        elseif (is_array($value))
-        {
-             $arrayValues = array_merge($arrayValues, array_values_recursive($value));
-        }
-    }
-
-    return $arrayValues;
-}
-
-
-
-require_once('footer.php');
-
-
-/**
- * 
- * 
- * ,product_Pictures,product_Category,pictures,category
- * WHERE product.product_ID = 3 , pictures.picture_ID=2
- *GROUP BY product.product_ID
- */
-
-?>
+<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>
+  <div class='carousel-inner'>
+    <div class='carousel-item active'>
+      <img src='...' class='d-block w-100' alt='...'>
+    </div>
+    <div class='carousel-item'>
+      <img src='...' class='d-block w-100' alt='...'>
+    </div>
+    <div class='carousel-item'>
+      <img src='...' class='d-block w-100' alt='...'>
+    </div>
+  </div>
+  <a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide='prev'>
+    <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+    <span class='sr-only'>Previous</span>
+  </a>
+  <a class='carousel-control-next' href='#carouselExampleControls' role='button' data-slide='next'>
+    <span class='carousel-control-next-icon' aria-hidden='true'></span>
+    <span class='sr-only'>Next</span>
+  </a>
+</div>
 
 

@@ -6,6 +6,9 @@
 <p>
 Copyright &copy; 2021 Felix Marcusson Viktor Hagström
 </p>
+<p>
+<a href="admin.php">Admin</a>
+</p>
 </div>
 </footer>
 

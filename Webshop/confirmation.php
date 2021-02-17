@@ -1,17 +1,40 @@
 <?php
 require_once("database.php");
+
 require_once("header.php");
 require_once("navbar.php");
 
-$movie = $_POST['movie'];
+
+//TODO Lägg in detta i en if(methodid==POST) annars gå till index
+
+
+
+?>
+
+
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $movie = $_POST['movie'];
+
+
+ 
+$succesMessage = "
+<div class = 'row'>
+    <div class='col-md-1'></div>
+    <div class='alert-success text-center col-10' role='alert'><h2 class='text-center'>Your purchase has been registered</h2></div> 
+    <div class='col-md-1'></div>
+</div>
+";
+
+
 
  $stmt = $conn->prepare(
-    "SELECT  product.product_Name,pictures.picture, product.product_Description , product.product_Price 
+    "SELECT  product.product_Name, product.product_Description , product.product_Price 
     FROM product
-    JOIN product_Pictures
-    ON product.product_ID = product_Pictures.product_ID
-    JOIN pictures
-    ON pictures.picture_ID = product_Pictures.picture_ID
+
     WHERE product.product_ID = $movie;
     "
 );
@@ -31,22 +54,89 @@ $stmt = $conn->prepare(
 $stmt->execute();
 $resultCategory = $stmt->fetchAll();
 
+$stmt = $conn->prepare(
+    "SELECT pictures.picture
+    FROM pictures
+    JOIN product_pictures
+    ON pictures.picture_ID = product_pictures.picture_ID
+    JOIN product
+    ON  product.product_ID = product_pictures.product_ID
+    WHERE product.product_ID = $movie;
+    "
+  );
+  $stmt->execute();
+  $resultPictures = $stmt->fetchAll();
+
+  $pictures = array();
+  
+  foreach ($resultPictures as $key => $picture) {
+    array_push($pictures,$picture['picture']);
+  }
+
 $categories = array();
 foreach ($resultCategory as $key => $value) {
     array_push($categories,ucfirst($value['category']));
 }
 
-?>
-<h1 class="text-center">Your purchase has been registered</h1>
-<?php
-$view = "<div class=' row justify-content-center'>";
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+    $tel = filter_var($_POST['tel'], FILTER_SANITIZE_STRING);
+
+    $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+
+    if (empty($email) == 1){
+        echo $errMessage;
+    }else{
+        $stmt = $conn->prepare("INSERT INTO ordersdb (name,email,tel,address,productID)
+        VALUES (:name, :email, :tel,:address,:productID)");
+        $stmt->bindParam(':email',$email);
+        $stmt->bindParam(':tel',$tel);
+        $stmt->bindParam(':name',$name);
+        $stmt->bindParam(':address',$address);
+        $stmt->bindParam(':productID',$movie);
+        $stmt->execute();
+        echo $succesMessage; 
+    }
+   
+}else{
+    header('Location:index.php');
+}
+
+$view = "<div class=' row justify-content-center mt-4'>";
 
 foreach ($resultMovie as $key => $value) {
     $view .="
-    <div class='col-1'>
-        <img class='img-fluid' style='width: 20rem;height: 18rem;' src='images/$value[picture]' alt='$value[product_Name]'>
+    <div class = 'col-2'>
 
-    </div>
+         <div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>
+           <div class='carousel-inner'>
+           <div class='carousel-item active '> <img src='images/$pictures[0]' class='d-block w-100' alt='...'></div>
+           ";
+
+            foreach ($pictures as $key => $pic) {
+              if($key != 0){
+                $view .= "<div class='carousel-item  '> <img src='images/$pic' class='d-block w-100' alt='...'></div>";
+              }
+              
+            }
+
+            $view .= "
+
+             </div>
+
+           <a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide='prev'>
+           <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+           <span class='sr-only'>Previous</span>
+           </a>
+           <a class='carousel-control-next' href='#carouselExampleControls' role='button' data-slide='next'>
+           <span class='carousel-control-next-icon' aria-hidden='true'></span>
+           <span class='sr-only'>Next</span>
+           </a>
+         </div>
+            
+        </div>
     <div class='col-2 text-center'>
         <h4> $value[product_Name] </h4>
         <div class ='text-center'>
