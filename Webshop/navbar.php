@@ -12,10 +12,10 @@
     <div class="collapse navbar-collapse"  id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php" >Start</a>
+          <a class="nav-link active" aria-current="page" href="/Databas/Webshop/index.php" >Start</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contact</a>
+          <a class="nav-link" href="/Databas/Webshop/contact.php">Contact</a>
         </li>
         
       </ul>
@@ -28,12 +28,12 @@
 </div>
 </div>
 
-<div class="col-md-1"></div>
 
-<div class="row " >
-<div class="col-md-1"></div>
-<div class="col-md-10 div_bg border border-danger"> 
-<div class="col-md-1"></div>
+
+<div class="row justify-content-center " >
+
+<div class="col-md-10 div_bg border border-danger">  </div>
+
 </div>
 
 

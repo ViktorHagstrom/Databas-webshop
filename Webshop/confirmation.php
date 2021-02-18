@@ -4,38 +4,26 @@ require_once("database.php");
 require_once("header.php");
 require_once("navbar.php");
 
-
-//TODO Lägg in detta i en if(methodid==POST) annars gå till index
-
-
-
 ?>
-
-
 
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $movie = $_POST['movie'];
+$movie = $_POST['movie'];
 
-
- 
 $succesMessage = "
-<div class = 'row'>
-    <div class='col-md-1'></div>
-    <div class='alert-success text-center col-10' role='alert'><h2 class='text-center'>Your purchase has been registered</h2></div> 
-    <div class='col-md-1'></div>
+<div class = 'row justify-content-center'>
+    <div class='alert-success text-center col-10' role='alert'><p class = 'mt-3'style = 'color:white; font-size:20px;'><b>Purchase registered</b></p></div>
+    </div> 
+    
 </div>
 ";
 
-
-
- $stmt = $conn->prepare(
-    "SELECT  product.product_Name, product.product_Description , product.product_Price 
-    FROM product
-
-    WHERE product.product_ID = $movie;
+ $stmt = $conn->prepare("
+     SELECT  product.product_Name, product.product_Description , product.product_Price 
+     FROM product
+     WHERE product.product_ID = $movie;
     "
 );
 $stmt->execute();
@@ -97,6 +85,14 @@ foreach ($resultCategory as $key => $value) {
         $stmt->bindParam(':address',$address);
         $stmt->bindParam(':productID',$movie);
         $stmt->execute();
+        
+        $stmt = $conn->prepare("INSERT INTO customers (customer_Name,customer_Email,customer_Tel,customer_Address)
+        VALUES (:customer_Name, :customer_Email, :customer_Tel,:customer_Address)");
+        $stmt->bindParam(':customer_Email',$email);
+        $stmt->bindParam(':customer_Tel',$tel);
+        $stmt->bindParam(':customer_Name',$name);
+        $stmt->bindParam(':customer_Address',$address);
+        $stmt->execute();
         echo $succesMessage; 
     }
    
@@ -156,7 +152,7 @@ foreach ($resultMovie as $key => $value) {
     </p>
 
     <div class = 'text-center' >
-    <button type='button' class='btn btn-danger disabled ml-2'>$value[product_Price] &dollar;</button>
+    <button type='button' class='btn btn-danger disabled ml-2'> &dollar;$value[product_Price] </button>
     
     </div>
 

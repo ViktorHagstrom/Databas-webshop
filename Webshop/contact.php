@@ -5,7 +5,7 @@ require_once('header.php');
 require_once('navbar.php');
 
 ?>
-<h1 class="text-center mt-1">Contact Us!</a> </h1>
+
 <?php
 require_once("database.php");
 
@@ -15,10 +15,10 @@ $errMessage = "<div class = 'row'>
  <div class='col-md-1'></div>
  </div> ";
  $succesMessage = "
- <div class = 'row'>
- <div class='col-md-1'></div> 
+ <div class = 'row justify-content-center'>
+ 
  <div class='alert-success text-center col-10' role='alert'><p class = 'mt-3'style = 'color:white; font-size:20px;'><b>Thank you for your message</b></p></div>
- <div class='col-md-1'></div>
+ 
  </div> ";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 }
 ?>
+<h1 class="text-center mt-1">Contact Us!</a> </h1>
 
 <div class="row mt-5 ">
 
@@ -52,20 +53,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="col-4">
                         <div class="text-center">
-                            <img class="rounded-circle" src="images/420.jpg" alt="" style ="width: 14rem; height: 14rem;" >
+                            <img class="rounded-circle" src="images/felix.jpg" alt="" style ="width: 14rem; height: 14rem;" >
                             <h4>Felix Marcusson</h4>
                             <p class="text-muted">
                                 KVALIT20 <br>
                                 felix.marcusson@yh.nackademin.se <br>
                                 </p>
-                            
-                            
+                               
                         </div>
                     </div>
                     
                     <div class="col-4">
                     <div class="text-center">
-                            <img class="rounded-circle" src="images/420.jpg" alt="" style ="width: 14rem; height: 14rem;">
+                            <img class="rounded-circle" src="images/viktor.PNG" alt="" style ="width: 14rem; height: 14rem;">
                             <h4>Viktor Hagström</h4>
                             <p class="text-muted">
                                 KVALIT20 <br>

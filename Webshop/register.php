@@ -160,7 +160,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['movie'] != null) {
         </p>
     
         <div class = 'text-center' >
-        <button type='button' class='btn btn-danger disabled ml-2'>$value[product_Price] &dollar;</button>
+        <button type='button' class='btn btn-danger disabled ml-2'>&dollar;$value[product_Price] </button>
         
         </div>
     

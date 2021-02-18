@@ -1,8 +1,6 @@
 <?php
 /**
- * Bilder på kontakt
  * Filtrera alla formulär
- * Kolla efter svenska
  * undermapp för admin
  * rensa bland filer
  */

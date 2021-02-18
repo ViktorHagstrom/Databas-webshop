@@ -14,7 +14,7 @@ $result = $stmt->fetchAll();
 
 
 $card = "<div class ='row d-flex justify-content-center '>
-<div class ='col-md-10 row row-cols-2 row-cols-md-2 row-cols-lg-4 row-cols-sm-1 g-4  d-flex justify-content-center'>
+<div class ='col-md-10 row row-cols-2 row-cols-md-2 row-cols-lg-4 row-cols-sm-1 g-4 row-cols-xl-5 d-flex justify-content-center'>
  ";
 
 foreach ($result as $key => $value) {
@@ -64,7 +64,7 @@ foreach ($result as $key => $value) {
         <div class='card' style='width: 20rem;height 18rem;'>
           <img src=images/$pictures[0] class='card-img-top img-thumbnail'  alt=$pictures[0]>
           <div class='card-body'>
-           <p class = 'text-center'><button type='button' class='btn btn-danger disabled ml-2'>$value[product_Price] &dollar;</button></p>
+           <p class = 'text-center'><button type='button' class='btn btn-danger disabled ml-2'>&dollar;$value[product_Price] </button></p>
            <div class ='text-center'>
            ";
     
@@ -78,7 +78,7 @@ foreach ($result as $key => $value) {
            <h5 class='card-title text-center mt-2'>$value[product_Name]</h5>
            <p class='card-text text-center'>$value[product_Description]</p>
              <div class = 'text-center'>
-              <a class='btn btn-warning' href='register.php?movie=$value[product_ID]'>Köp</a>
+              <a class='btn btn-warning' href='register.php?movie=$value[product_ID]'>Buy</a>
              </div>
           </div>
         </div>
